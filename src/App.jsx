@@ -87,7 +87,13 @@ export default function App() {
 
       <header className="app-header">
         <div className="header-row">
-          <span className="wordmark">one thing</span>
+          <div className="wordmark-group">
+            <svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <rect width="20" height="20" rx="4.5" fill="#C96442"/>
+              <text x="10" y="14" text-anchor="middle" font-family="Inter, system-ui, sans-serif" font-size="11" font-weight="500" fill="white">1</text>
+            </svg>
+            <span className="wordmark">one thing</span>
+          </div>
           <span className="header-date">{formatDate()}</span>
         </div>
         {ctx?.weekly_theme && <p className="weekly-theme">{ctx.weekly_theme}</p>}

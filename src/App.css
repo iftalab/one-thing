@@ -54,6 +54,12 @@
   gap: 12px;
 }
 
+.wordmark-group {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
 .wordmark {
   font-size: 18px;
   font-weight: 500;
