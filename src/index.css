@@ -1,19 +1,15 @@
-@import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500&display=swap');
 
 :root {
-  --bg:            #FAFAF8;
-  --bg-card:       #F4F4F1;
-  --bg-card-hover: #EFEFEC;
-  --text:          #1C1C1E;
-  --text-2:        #6C6C70;
-  --text-3:        #AEAEB2;
-  --text-frozen:   #C7C7CC;
-  --divider:       #E8E8E3;
-  --gold:          #C8A96E;
-  --gold-shadow:   rgba(200, 169, 110, 0.32);
+  --bg:       #F9F7F4;
+  --bg-card:  #F0EDE8;
+  --text:     #1A1915;
+  --text-2:   #9B9489;
+  --text-3:   #C4BFB6;
+  --divider:  #E5E1DA;
+  --accent:   #C96442;
 
-  --serif: 'Instrument Serif', Georgia, serif;
-  --sans:  'Inter', system-ui, -apple-system, sans-serif;
+  --sans: 'Inter', system-ui, -apple-system, sans-serif;
 
   font-family: var(--sans);
   font-size: 16px;
@@ -21,25 +17,15 @@
   background: var(--bg);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-rendering: optimizeLegibility;
 }
 
-*, *::before, *::after {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
-body {
-  background: var(--bg);
-}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body { background: var(--bg); }
 
 #root {
   max-width: 640px;
   margin: 0 auto;
   min-height: 100svh;
-  position: relative;
 }
 
-button { font-family: var(--sans); cursor: pointer; }
-input, select, textarea { font-family: var(--sans); }
+button, input, select, textarea { font-family: var(--sans); }
