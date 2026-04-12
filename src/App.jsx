@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { supabase } from './lib/supabase'
 import './App.css'
 
@@ -228,13 +228,39 @@ function FocusCard({ task }) {
 }
 
 function TaskCard({ task, frozen }) {
+  const [open, setOpen] = useState(false)
+  const hasNotes = Boolean(task.notes)
+  const bodyRef = useRef(null)
+
   return (
-    <div className={`task-card${frozen ? ' frozen' : ''}`}>
-      <span className="task-title">{task.title}</span>
-      <div className="task-right">
-        {task.area && <span className="tag">{task.area}</span>}
-        <PriorityBadge priority={task.priority} small />
+    <div
+      className={`task-card${frozen ? ' frozen' : ''}${open ? ' open' : ''}${hasNotes ? ' has-notes' : ''}`}
+      onClick={() => hasNotes && setOpen(o => !o)}
+      role={hasNotes ? 'button' : undefined}
+      tabIndex={hasNotes ? 0 : undefined}
+      onKeyDown={e => {
+        if (!hasNotes) return
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); setOpen(o => !o) }
+      }}
+      aria-expanded={hasNotes ? open : undefined}
+    >
+      <div className="task-row">
+        <span className="task-title">{task.title}</span>
+        <div className="task-right">
+          {task.area && <span className="tag">{task.area}</span>}
+          <PriorityBadge priority={task.priority} small />
+          {hasNotes && <span className="task-chevron" aria-hidden="true">›</span>}
+        </div>
       </div>
+      {hasNotes && (
+        <div
+          ref={bodyRef}
+          className="task-body"
+          style={{ maxHeight: open ? `${bodyRef.current?.scrollHeight ?? 400}px` : 0 }}
+        >
+          <p className="task-notes">{task.notes}</p>
+        </div>
+      )}
     </div>
   )
 }
