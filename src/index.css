@@ -1,15 +1,19 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
 
 :root {
-  --bg:       #F9F7F4;
-  --bg-card:  #F0EDE8;
-  --text:     #1A1915;
-  --text-2:   #9B9489;
-  --text-3:   #C4BFB6;
-  --divider:  #E5E1DA;
-  --accent:   #C96442;
+  --bg:        #ffffff;
+  --bg-soft:   #f9fafb;
+  --bg-card:   #f3f4f6;
+  --text:      #111827;
+  --text-2:    #4b5563;
+  --text-3:    #9ca3af;
+  --divider:   #e5e7eb;
+  --accent:    #4f46e5;
+  --accent-2:  #6366f1;
+  --accent-soft: #eef2ff;
+  --purple:    #9333ea;
 
-  --sans: 'Inter', system-ui, -apple-system, sans-serif;
+  --sans: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
 
   font-family: var(--sans);
   font-size: 16px;
@@ -19,13 +23,28 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-body { background: var(--bg); }
-
-#root {
-  max-width: 640px;
-  margin: 0 auto;
-  min-height: 100svh;
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg:        #030712;
+    --bg-soft:   #0b1120;
+    --bg-card:   #111827;
+    --text:      #f9fafb;
+    --text-2:    #9ca3af;
+    --text-3:    #4b5563;
+    --divider:   #1f2937;
+    --accent:    #818cf8;
+    --accent-2:  #a5b4fc;
+    --accent-soft: #1e1b4b;
+    --purple:    #c084fc;
+  }
 }
 
-button, input, select, textarea { font-family: var(--sans); }
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body { background: var(--bg); min-height: 100svh; }
+
+#root {
+  max-width: 720px;
+  margin: 0 auto;
+  min-height: 100svh;
+  padding: 0;
+}
