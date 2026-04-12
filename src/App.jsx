@@ -7,6 +7,29 @@ function formatDate() {
   return d.toLocaleDateString('en-GB', { weekday: 'long', day: 'numeric', month: 'long' })
 }
 
+const LINK_RE = /((?:https?:\/\/|www\.)[^\s<]+[^\s<.,:;!?)\]'"])|([\w.+-]+@[\w-]+\.[\w.-]+)/gi
+
+function Linkify({ text }) {
+  if (!text) return null
+  const parts = []
+  let last = 0
+  let m
+  LINK_RE.lastIndex = 0
+  while ((m = LINK_RE.exec(text)) !== null) {
+    if (m.index > last) parts.push(text.slice(last, m.index))
+    const [match, url, email] = m
+    if (email) {
+      parts.push(<a key={m.index} href={`mailto:${email}`}>{email}</a>)
+    } else {
+      const href = url.startsWith('http') ? url : `https://${url}`
+      parts.push(<a key={m.index} href={href} target="_blank" rel="noopener noreferrer">{url}</a>)
+    }
+    last = m.index + match.length
+  }
+  if (last < text.length) parts.push(text.slice(last))
+  return <>{parts}</>
+}
+
 export default function App() {
   const [tasks,   setTasks]   = useState([])
   const [ctx,     setCtx]     = useState(null)
@@ -222,7 +245,7 @@ function FocusCard({ task }) {
         <PriorityBadge priority={task.priority} />
       </div>
       <h1 className="focus-title">{task.title}</h1>
-      {task.notes && <p className="focus-notes">{task.notes}</p>}
+      {task.notes && <div className="focus-notes"><Linkify text={task.notes} /></div>}
     </div>
   )
 }
@@ -258,7 +281,7 @@ function TaskCard({ task, frozen }) {
           className="task-body"
           style={{ maxHeight: open ? `${bodyRef.current?.scrollHeight ?? 400}px` : 0 }}
         >
-          <p className="task-notes">{task.notes}</p>
+          <div className="task-notes"><Linkify text={task.notes} /></div>
         </div>
       )}
     </div>
